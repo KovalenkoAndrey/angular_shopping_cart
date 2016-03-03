@@ -7,170 +7,32 @@
 </head>
 <body ng-app="cart" ng-controller="mainController">
 	<header class="header clearfix">
-		<h1 class="logo">Best shopping cart</h1>
+		<h1 class="logo">Best shopping cart ({{cart.length}})</h1>
 		<input class="search" type="text" ng-model="search">
 	</header>
 	<div class="wrapper">
 		<aside class="aside">
 			<h2>Categories</h2>
 			<ul class="filters">
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
-				<li class="filter-item">cat</li>
+				<li class="filter-item"><a href="#" ng-click="applyFilter('')">All</a></li>
+				<li ng-repeat="filterItem in categories" class="filter-item">
+					<a href="#" ng-click="applyFilter(filterItem.name)">{{filterItem.name}}</a>
+				</li>
 			</ul>
 		</aside>
-		<div class="content clearfix">
+		<div class="content clearfix" ng-cloak>
 			<ul class="cart">
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
+				<li ng-repeat="characterInfo in items | filter:search" class="cart-item">
+					<div class="item-details">					
+						<img ng-src="{{characterInfo.image}}" alt="" class="item-image">
+						<h3>{{characterInfo.name}}</h3>
 						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
+							<li ng-repeat="category in characterInfo.categories" class="filters">
+							<a href="#" ng-click="applyFilter(category)">{{category}}</a>
+							</li>
 						</ul>
 					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
-				</li>
-				<li class="cart-item">
-					<img src="" alt="" class="item-image">
-					<div class="item-details">
-						<h3>Name</h3>
-						<ul>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-							<li class="filters">cat</li>
-						</ul>
-					</div>
-					<button class="main-btn"></button>
+					<button class="main-btn" ng-click="addToCart(characterInfo.id)">Action</button>
 				</li>
 			</ul>
 		</div>		
