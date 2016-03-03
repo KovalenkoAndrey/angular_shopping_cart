@@ -74,17 +74,21 @@ body {
 	padding: 10px;
 }
 
-.filter-item{
+.wrapper {
+	height: 100%;
 }
 
 .content {
 	position: relative;
-	padding: 80px 0 0 170px;
+	padding: 80px 0 0 180px;
 	background: #eee;
 	width: auto;
+	height: auto;
+	min-height: 100%;
+	box-sizing: border-box;
 }
 
-.catalog-item {
+.catalog-item, .cart-item {
 	width: 300px;
 	height: 300px;
 	background: #fff;
@@ -100,10 +104,6 @@ body {
 	padding: 5px;
 }
 
-.item-details {
-
-}
-
 .main-btn {
 	width: 100%;
 	bottom: 0;
@@ -115,19 +115,16 @@ body {
 	color: #fff;
 }
 
-.cart-pane {
-	display: none;
-	position: fixed;
-	top: 60px;
-	right: 0;
-	width: 290px;
-	margin: 0.5em;
-	padding: 0.5em;
-	background: #fff;
-}
-
 .cart-pane.visible {
 	display: block;
+}
+
+.cart {
+	margin-top: 10px;
+}
+
+.category {
+	margin-left: 10px;
 }
 
 @media (max-width: 600px) {

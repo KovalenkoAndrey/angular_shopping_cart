@@ -30,25 +30,25 @@ cartApp.controller('mainController', ['$scope', function($scope) {
 	{
 		id: 4,
 		name: 'Jon Snow',
-		image: '',
+		image: 'Images/jonsnow.jpg',
 		categories: ['Warrior', 'Ruler']
 	},
 	{
 		id: 5,
 		name: 'Eddard Stark',
-		image: '',
+		image: 'Images/nedstark.jpg',
 		categories: ['Warrior', 'Ruler']
 	},
 	{
 		id: 6,
 		name: 'Cersei Lannister',
-		image: '',
+		image: 'Images/cersei.jpg',
 		categories: ['Ruler']
 	},
 	{
 		id: 7,
 		name: 'Joffrey Baratheon',
-		image: '',
+		image: 'Images/joffrey.png',
 		categories: ['Child', 'Ruler']
 	}
 	];
@@ -71,18 +71,9 @@ cartApp.controller('mainController', ['$scope', function($scope) {
 		}
 	}
 	$scope.showCart = function() {
-		var cartPane = document.getElementById('cartPane');
-		if (cartPane){
-			if (cartPane.classList) {
-				if (cartPane.classList.contains('visible')) {
-					cartPane.classList.remove('visible');
-				}
-				else {
-					cartPane.classList.add('visible');
-				}
-			}
-		}
+		$scope.cartVisible = !$scope.cartVisible;
 	};
+	$scope.cartVisible = false;
 }]).directive('characterItem', function(){
 	return {
 		restrict: 'E',
