@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Shopping Cart</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body ng-app="cart" ng-controller="mainController">
+	<header class="header clearfix">
+		<h1 class="logo-text">GoT Characters Shop</h1>
+		<img src="got.png" alt="GoT Characters Shop" class="logo-image">
+		<img src="cart-icon.png" class="cart-icon" alt="" ng-click="showCart()">
+		<input class="search" type="text" ng-model="search">
+	</header>
+	<div class="wrapper">
+		<aside class="aside">
+			<h2>Categories</h2>
+			<ul class="filters">
+				<li class="filter-item"><a href="#" ng-click="applyFilter('')">All</a></li>
+				<li ng-repeat="filterItem in categories" class="filter-item">
+					<a href="#" ng-click="applyFilter(filterItem.name)">{{filterItem.name}}</a>
+				</li>
+			</ul>
+		</aside>
+		<div class="content clearfix" ng-cloak>
+			<div id="cartPane" class="cart-pane" ng-if="cartVisible">
+				<h3>Cart</h3>
+				<ul class="cart">
+					<li class="cart-item" ng-repeat="cartItem in cart">
+						<div class="item-details">					
+							<img ng-src="{{cartItem.image}}" alt="" class="item-image">
+							<h3>{{cartItem.name}}</h3>
+							<ul>
+								<li ng-repeat="category in cartItem.categories" class="filters">
+									<span class="category">{{category}}</span>
+								</li>
+							</ul>
+						</div>
+						<button class="main-btn" ng-click="removeFromCart(cartItem)">Remove from cart</button>
+					</li>
+					<h4 ng-if="!cart.length">Cart is empty</h4>
+				</ul>
+			</div>
+			<ul class="catalog" ng-if="!cartVisible">
+				<li ng-repeat="characterInfo in items | filter:search" class="catalog-item">
+					<div class="item-details">					
+						<img ng-src="{{characterInfo.image}}" alt="" class="item-image">
+						<h3>{{characterInfo.name}}</h3>
+						<ul>
+							<li ng-repeat="category in characterInfo.categories" class="filters">
+							<a href="#" ng-click="applyFilter(category)">{{category}}</a>
+							</li>
+						</ul>
+					</div>
+					<button class="main-btn" ng-click="addToCart(characterInfo)">Add to cart</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
