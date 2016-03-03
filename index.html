@@ -7,7 +7,9 @@
 </head>
 <body ng-app="cart" ng-controller="mainController">
 	<header class="header clearfix">
-		<h1 class="logo">Best shopping cart ({{cart.length}})</h1>
+		<h1 class="logo-text">GoT Characters Shop</h1>
+		<img src="got.png" alt="GoT Characters Shop" class="logo-image">
+		<img src="cart-icon.png" class="cart-icon" alt="" ng-click="showCart()">
 		<input class="search" type="text" ng-model="search">
 	</header>
 	<div class="wrapper">
@@ -21,8 +23,8 @@
 			</ul>
 		</aside>
 		<div class="content clearfix" ng-cloak>
-			<ul class="cart">
-				<li ng-repeat="characterInfo in items | filter:search" class="cart-item">
+			<ul class="catalog">
+				<li ng-repeat="characterInfo in items | filter:search" class="catalog-item">
 					<div class="item-details">					
 						<img ng-src="{{characterInfo.image}}" alt="" class="item-image">
 						<h3>{{characterInfo.name}}</h3>
@@ -32,10 +34,19 @@
 							</li>
 						</ul>
 					</div>
-					<button class="main-btn" ng-click="addToCart(characterInfo.id)">Action</button>
+					<button class="main-btn" ng-click="addToCart(characterInfo.name)">Action</button>
 				</li>
 			</ul>
-		</div>		
+		</div>
+	</div>
+	<div id="cartPane" class="cart-pane">
+	<h3>Cart</h3>
+	<ul class="cart">
+		<li class="cart-item" ng-repeat="cartItem in cart">
+			{{cartItem}} - <a href="#" ng-click="removeFromCart(cartItem)">Remove</a>
+		</li>
+		<h4 ng-if="!cart.length">Cart is empty</h4>
+	</ul>
 	</div>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>

@@ -12,19 +12,19 @@ cartApp.controller('mainController', ['$scope', function($scope) {
 	{
 		id: 1,
 		name: 'Arya Stark',
-		image: 'http://images5.fanpop.com/image/photos/30300000/Arya-arya-stark-30307481-200-200.jpg',
+		image: 'Images/arya.jpg',
 		categories: ['Assassin', 'Child']
 	},
 	{
 		id: 2,
 		name: 'Tyrion Lannister',
-		image: '',
+		image: 'Images/tyrion.jpg',
 		categories: ['Ruler']
 	},
 	{
 		id: 3,
-		name: 'Daeneris Targarien',
-		image: '',
+		name: 'Daenerys Targarien',
+		image: 'Images/daenerys.jpg',
 		categories: ['Ruler']
 	},
 	{
@@ -63,6 +63,25 @@ cartApp.controller('mainController', ['$scope', function($scope) {
 	$scope.cart = [];
 	$scope.addToCart = function(characterId) {
 		$scope.cart.push(characterId);
+	};
+	$scope.removeFromCart = function(characterName) {
+		var index = $scope.cart.indexOf(characterName);
+		if (index>-1) {
+			$scope.cart.splice(index, 1);
+		}
+	}
+	$scope.showCart = function() {
+		var cartPane = document.getElementById('cartPane');
+		if (cartPane){
+			if (cartPane.classList) {
+				if (cartPane.classList.contains('visible')) {
+					cartPane.classList.remove('visible');
+				}
+				else {
+					cartPane.classList.add('visible');
+				}
+			}
+		}
 	};
 }]).directive('characterItem', function(){
 	return {
