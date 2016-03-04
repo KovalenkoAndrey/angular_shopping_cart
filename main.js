@@ -1,59 +1,10 @@
 var cartApp = angular.module('cart', []);
 
-cartApp.controller('mainController', ['$scope', function($scope) {
-	$scope.categories = [
-		{id: 1,name: 'Warrior'},
-		{id: 2, name: 'Assassin'},
-		{id: 3, name: 'Meister'},
-		{id: 4, name: 'Child'},
-		{id: 5, name: 'Ruler'}
-	];
-	$scope.items = [
-	{
-		id: 1,
-		name: 'Arya Stark',
-		image: 'Images/arya.jpg',
-		categories: ['Assassin', 'Child']
-	},
-	{
-		id: 2,
-		name: 'Tyrion Lannister',
-		image: 'Images/tyrion.jpg',
-		categories: ['Ruler']
-	},
-	{
-		id: 3,
-		name: 'Daenerys Targarien',
-		image: 'Images/daenerys.jpg',
-		categories: ['Ruler']
-	},
-	{
-		id: 4,
-		name: 'Jon Snow',
-		image: 'Images/jonsnow.jpg',
-		categories: ['Warrior', 'Ruler']
-	},
-	{
-		id: 5,
-		name: 'Eddard Stark',
-		image: 'Images/nedstark.jpg',
-		categories: ['Warrior', 'Ruler']
-	},
-	{
-		id: 6,
-		name: 'Cersei Lannister',
-		image: 'Images/cersei.jpg',
-		categories: ['Ruler']
-	},
-	{
-		id: 7,
-		name: 'Joffrey Baratheon',
-		image: 'Images/joffrey.png',
-		categories: ['Child', 'Ruler']
-	}
-	];
+cartApp.controller('mainController', ['$scope', 'dateRetrieverService', function($scope, dateRetrieverService) {
+	$scope.categories = dateRetrieverService.getCategories();
+	$scope.items = dateRetrieverService.getItems();
 	$scope.applyFilter = function(filter){
-		if ($scope.search==filter){
+		if ($scope.search === filter){
 			$scope.search = '';
 		}
 		else {
@@ -74,12 +25,60 @@ cartApp.controller('mainController', ['$scope', function($scope) {
 		$scope.cartVisible = !$scope.cartVisible;
 	};
 	$scope.cartVisible = false;
-}]).directive('characterItem', function(){
-	return {
-		restrict: 'E',
-		scope: {
-			characterInfo: '=info'
-		},
-		templateUrl: 'character-item.html'
-	}
+}]).service('dateRetrieverService', function() {
+	this.getItems = function() {
+		return [
+			{
+				id: 1,
+				name: 'Arya Stark',
+				image: 'images/arya.jpg',
+				categories: ['Assassin', 'Child']
+			},
+			{
+				id: 2,
+				name: 'Tyrion Lannister',
+				image: 'images/tyrion.jpg',
+				categories: ['Ruler']
+			},
+			{
+				id: 3,
+				name: 'Daenerys Targarien',
+				image: 'images/daenerys.jpg',
+				categories: ['Ruler']
+			},
+			{
+				id: 4,
+				name: 'Jon Snow',
+				image: 'images/jonsnow.jpg',
+				categories: ['Warrior', 'Ruler']
+			},
+			{
+				id: 5,
+				name: 'Eddard Stark',
+				image: 'images/nedstark.jpg',
+				categories: ['Warrior', 'Ruler']
+			},
+			{
+				id: 6,
+				name: 'Cersei Lannister',
+				image: 'images/cersei.jpg',
+				categories: ['Ruler']
+			},
+			{
+				id: 7,
+				name: 'Joffrey Baratheon',
+				image: 'images/joffrey.png',
+				categories: ['Child', 'Ruler']
+			}
+		];
+	};
+	this.getCategories = function() {
+		return [
+			{id: 1,name: 'Warrior'},
+			{id: 2, name: 'Assassin'},
+			{id: 3, name: 'Meister'},
+			{id: 4, name: 'Child'},
+			{id: 5, name: 'Ruler'}
+		];
+	};
 });
